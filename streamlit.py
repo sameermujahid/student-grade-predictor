@@ -3,11 +3,10 @@ import pandas as pd
 import numpy as np
 import joblib
 import os
-from pathlib import Path
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
-from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler
+from pathlib import Path
 
 # =====================================================
 # Utility Functions
@@ -34,38 +33,13 @@ def sanitize_df(df: pd.DataFrame):
 def prepare_example_df():
     """Prepare example student input"""
     example = {
-        "sex": "F",
-        "age": 17,
-        "address": "U",
-        "famsize": "GT3",
-        "Pstatus": "T",
-        "Medu": 2,
-        "Fedu": 2,
-        "Mjob": "health",
-        "Fjob": "services",
-        "reason": "course",
-        "guardian": "mother",
-        "traveltime": 1,
-        "studytime": 2,
-        "failures": 0,
-        "schoolsup": "no",
-        "famsup": "yes",
-        "paid": "no",
-        "activities": "yes",
-        "higher": "yes",
-        "internet": "yes",
-        "romantic": "no",
-        "famrel": 4,
-        "freetime": 3,
-        "goout": 2,
-        "Dalc": 1,
-        "Walc": 1,
-        "health": 5,
-        "absences": 4,
-        "nursery": "yes",
-        "G1": 14,
-        "G2": 15,
-        "school": "GP"
+        "sex": "F", "age": 17, "address": "U", "famsize": "GT3", "Pstatus": "T",
+        "Medu": 2, "Fedu": 2, "Mjob": "health", "Fjob": "services", "reason": "course",
+        "guardian": "mother", "traveltime": 1, "studytime": 2, "failures": 0,
+        "schoolsup": "no", "famsup": "yes", "paid": "no", "activities": "yes",
+        "higher": "yes", "internet": "yes", "romantic": "no", "famrel": 4,
+        "freetime": 3, "goout": 2, "Dalc": 1, "Walc": 1, "health": 5,
+        "absences": 4, "nursery": "yes", "G1": 14, "G2": 15, "school": "GP"
     }
     df = pd.DataFrame([example])
     bin_map = {"yes":1,"no":0,"F":0,"M":1,"U":1,"R":0,"LE3":0,"GT3":1,"T":1,"A":0}
