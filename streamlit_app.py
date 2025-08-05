@@ -8,10 +8,6 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from pathlib import Path
 
-# =====================================================
-# Utility Functions
-# =====================================================
-
 def sanitize_df(df: pd.DataFrame):
     """Ensure numeric and binary columns are converted properly"""
     binary_cols = ["sex", "address", "famsize", "Pstatus",
@@ -51,10 +47,6 @@ def prepare_example_df():
         df[col] = df[col].map({"yes":1,"no":0})
     return sanitize_df(df)
 
-# =====================================================
-# Model Handling
-# =====================================================
-
 def train_default_model():
     """Train a fallback dummy RandomForest model"""
     st.warning("⚠️ Model file missing or incompatible. Training a default model...")
@@ -74,24 +66,14 @@ def load_model_safe(path: str):
         st.error(f"Failed to load saved model: {e}")
         return train_default_model()
 
-# =====================================================
-# Streamlit UI
-# =====================================================
-
 st.set_page_config(page_title="Student Grade Predictor", layout="centered")
 st.title("Final Grade (G3) Predictor")
-
-# Load Model
+#loading model
 model_path = os.path.join(os.path.dirname(__file__), "best_random_forest.joblib")
 model = load_model_safe(model_path)
 
-# Sidebar Input Mode
 st.sidebar.header("Input Mode")
 input_mode = st.sidebar.selectbox("Mode", ["Example student", "Manual input"])
-
-# =====================================================
-# Example Mode
-# =====================================================
 if input_mode == "Example student":
     st.subheader("Example student")
     df_input = prepare_example_df()
@@ -101,11 +83,7 @@ if input_mode == "Example student":
     if st.button("Predict for Example"):
         pred = model.predict(df_input)[0]
         st.success(f"✅ Predicted Final Grade (G3): **{pred:.2f}**")
-
-# =====================================================
-# Manual Input Mode
-# =====================================================
-else:
+else
     st.subheader("Fill student features manually")
     col1, col2 = st.columns(2)
 
@@ -144,8 +122,7 @@ else:
         G1 = st.number_input("G1", 0, 20, 14)
         G2 = st.number_input("G2", 0, 20, 15)
         school = st.selectbox("School", ["GP","MS"], 0)
-
-    # Prepare DataFrame
+        
     raw = {
         "sex": sex, "age": age, "address": address, "famsize": famsize,
         "Pstatus": Pstatus, "Medu": Medu, "Fedu": Fedu, "Mjob": Mjob,
@@ -174,5 +151,7 @@ else:
     if st.button("Predict"):
         pred = model.predict(df_input)[0]
         st.success(f"✅ Predicted Final Grade (G3): **{pred:.2f}**")
+
+
 
 
