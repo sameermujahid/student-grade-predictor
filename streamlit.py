@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import joblib
+import os
 from pathlib import Path
 
 # === Utility functions ===
@@ -184,4 +185,5 @@ elif input_mode == "Manual input":
     if st.button("Predict"):
         pred = model.predict(df_input)[0]
         st.success(f"Predicted final grade (G3): **{pred:.2f}**")
+
 
