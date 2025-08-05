@@ -73,7 +73,3 @@ Key insights:
 * Behavioral aspects like **free time**, **social activity**, and **prior failures** contributed less but were still meaningful.
 
 This suggests that **past academic performance** is the most reliable indicator of future outcomes.
-
----
-
-Let me know if you'd like this in a downloadable `.md` file or want to add sections like installation, usage, or dataset citation.
