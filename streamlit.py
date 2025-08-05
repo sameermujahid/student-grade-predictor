@@ -76,7 +76,7 @@ st.set_page_config(page_title="Student Grade Predictor", layout="centered")
 st.title("Final Grade (G3) Predictor")
 
 # Load model
-model_path = "D:\\propertyverify_final\\visual\\best_random_forest_pipeline.joblib"
+model_path = os.path.join(os.path.dirname(__file__), "best_random_forest_pipeline.joblib")
 if not Path(model_path).exists():
     st.error(f"Model not found at '{model_path}'. Make sure you ran training and saved the pipeline.")
     st.stop()
@@ -184,3 +184,4 @@ elif input_mode == "Manual input":
     if st.button("Predict"):
         pred = model.predict(df_input)[0]
         st.success(f"Predicted final grade (G3): **{pred:.2f}**")
+
