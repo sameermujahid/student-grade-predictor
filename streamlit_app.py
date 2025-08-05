@@ -83,7 +83,7 @@ if input_mode == "Example student":
     if st.button("Predict for Example"):
         pred = model.predict(df_input)[0]
         st.success(f"✅ Predicted Final Grade (G3): **{pred:.2f}**")
-else
+else:
     st.subheader("Fill student features manually")
     col1, col2 = st.columns(2)
 
@@ -151,6 +151,7 @@ else
     if st.button("Predict"):
         pred = model.predict(df_input)[0]
         st.success(f"✅ Predicted Final Grade (G3): **{pred:.2f}**")
+
 
 
 
